@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>muttest.uz — 60-talik Test Platformasi</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ===== LOGIN SCREEN ===== -->
+<div id="login-screen" class="screen active">
+    <div class="sketch-card login-card">
+        <div class="logo-sketch">✏️</div>
+        <h1 class="site-title">muttest.uz</h1>
+        <p class="site-sub">60-talik akademik test platformasi</p>
+        <div class="input-wrap">
+            <label class="sketch-label">Ism Familiyangiz</label>
+            <input type="text" id="user-name-input" class="sketch-input" 
+                   placeholder="Masalan: Aziz Karimov" autocomplete="off">
+        </div>
+        <button class="sketch-btn primary-btn" onclick="startSession()">
+            Boshlash →
+        </button>
+        <p class="hint-text">Parol shart emas</p>
+    </div>
+</div>
+
+<!-- ===== DASHBOARD SCREEN ===== -->
+<div id="dashboard-screen" class="screen">
+    <div class="dash-header">
+        <div>
+            <p class="greeting-sub" id="greeting-text">Xayrli kun</p>
+            <h2 class="user-name-display" id="display-name">Talaba</h2>
+        </div>
+        <button class="sketch-btn small-btn" onclick="logout()">Chiqish</button>
+    </div>
+
+    <div class="dash-stats">
+        <div class="stat-box">
+            <span class="stat-num" id="stat-total-tests">0</span>
+            <span class="stat-lbl">test</span>
+        </div>
+        <div class="stat-box">
+            <span class="stat-num" id="stat-avg-score">0%</span>
+            <span class="stat-lbl">o'rtacha</span>
+        </div>
+        <div class="stat-box">
+            <span class="stat-num" id="stat-best-score">0%</span>
+            <span class="stat-lbl">eng yaxshi</span>
+        </div>
+    </div>
+
+    <h3 class="section-title">Fan tanlang:</h3>
+
+    <div class="subject-grid">
+        <button class="sketch-btn subject-btn" onclick="startTest('musiqa_nazariyasi')">
+            <span class="subj-icon">🎵</span>
+            <span class="subj-name">Musiqa nazariyasi</span>
+            <span class="subj-count">60 ta savol</span>
+        </button>
+        <button class="sketch-btn subject-btn" onclick="startTest('cholgu_ijrochiligi')">
+            <span class="subj-icon">🎻</span>
+            <span class="subj-name">Cholg'u ijrochiligi</span>
+            <span class="subj-count">60 ta savol</span>
+        </button>
+        <button class="sketch-btn subject-btn" onclick="startTest('vokal_ijrochiligi')">
+            <span class="subj-icon">🎤</span>
+            <span class="subj-name">Vokal ijrochiligi</span>
+            <span class="subj-count">60 ta savol</span>
+        </button>
+        <button class="sketch-btn subject-btn" onclick="startTest('metodika_repertuar')">
+            <span class="subj-icon">📚</span>
+            <span class="subj-name">Metodika</span>
+            <span class="subj-count">60 ta savol</span>
+        </button>
+        <button class="sketch-btn subject-btn aralash-btn" onclick="startTest('aralash')">
+            <span class="subj-icon">🔀</span>
+            <span class="subj-name">Aralash Test</span>
+            <span class="subj-count">15×4 = 60 ta savol</span>
+        </button>
+    </div>
+
+    <div id="history-section" class="history-section" style="display:none">
+        <h3 class="section-title">Oxirgi natijalar:</h3>
+        <div id="history-list"></div>
+    </div>
+</div>
+
+<!-- ===== TEST SCREEN ===== -->
+<div id="test-screen" class="screen">
+    <!-- Top bar -->
+    <div class="test-topbar">
+        <div class="test-progress-wrap">
+            <div class="test-counter">
+                <span id="q-current">1</span>/<span id="q-total">60</span>
+            </div>
+            <div class="progress-bar-outer">
+                <div class="progress-bar-inner" id="progress-bar"></div>
+            </div>
+        </div>
+        <button class="sketch-btn exit-btn" onclick="exitTest()">✕ Chiqish</button>
+    </div>
+
+    <!-- Question -->
+    <div class="question-area">
+        <div class="q-number-badge" id="q-badge">1</div>
+        <p class="question-text" id="question-text">Savol matni...</p>
+    </div>
+
+    <!-- Options -->
+    <div class="options-area" id="options-area"></div>
+
+    <!-- Navigation -->
+    <div class="nav-btns">
+        <button class="sketch-btn nav-btn" id="prev-btn" onclick="goTo(-1)">← Oldingi</button>
+        <button class="sketch-btn nav-btn" id="next-btn" onclick="goTo(1)">Keyingi →</button>
+    </div>
+
+    <!-- Finish -->
+    <button class="sketch-btn finish-btn" id="finish-btn" onclick="showResults()" style="display:none">
+        ✅ Testni yakunlash
+    </button>
+
+    <!-- Mini map -->
+    <div class="mini-map-wrap">
+        <div id="mini-map" class="mini-map"></div>
+    </div>
+</div>
+
+<!-- ===== RESULT SCREEN ===== -->
+<div id="result-screen" class="screen">
+    <div class="sketch-card result-card">
+        <div class="result-icon" id="result-icon">🎉</div>
+        <h2 class="result-title" id="result-title">Natija</h2>
+        <div class="result-score" id="result-score">0 / 60</div>
+        <div class="result-pct" id="result-pct">0%</div>
+
+        <div class="result-bars" id="result-bars"></div>
+
+        <div class="result-btns">
+            <button class="sketch-btn primary-btn" onclick="backToDash()">← Bosh sahifa</button>
+            <button class="sketch-btn" onclick="restartTest()">🔄 Qayta ishlash</button>
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

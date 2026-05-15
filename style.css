@@ -1,0 +1,513 @@
+/* ============================================================
+   muttest.uz — PAPER SKETCH DIZAYN
+   Font: Caveat (handwritten), Inter (UI)
+   Colors: qog'oz oq, qalam qora, qizil xato, yashil to'g'ri
+   ============================================================ */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+    --paper:    #FCFAF8;
+    --paper2:   #F5F2EE;
+    --ink:      #1A1A1A;
+    --ink-2:    #444444;
+    --ink-3:    #888888;
+    --border:   #222222;
+    --correct:  #1a7a3e;
+    --wrong:    #c0392b;
+    --correct-bg: #e8f5ee;
+    --wrong-bg:   #fdecea;
+    --accent:   #1a5fa8;
+    --accent-bg:#e8f0fb;
+    --shadow:   4px 4px 0px #222;
+    --shadow-sm:3px 3px 0px #222;
+    --r:        8px;
+    --font-hand:'Caveat', cursive;
+    --font-ui:  'Inter', system-ui, sans-serif;
+}
+
+html, body {
+    height: 100%;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-ui);
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ============================================================
+   SCREENS
+   ============================================================ */
+.screen {
+    display: none;
+    min-height: 100vh;
+    padding: 20px 16px 40px;
+    max-width: 640px;
+    margin: 0 auto;
+}
+.screen.active { display: block; }
+
+/* ============================================================
+   SKETCH CARD
+   ============================================================ */
+.sketch-card {
+    background: #fff;
+    border: 2px solid var(--border);
+    border-radius: var(--r);
+    box-shadow: var(--shadow);
+    padding: 28px 24px;
+}
+
+/* ============================================================
+   SKETCH BUTTONS
+   ============================================================ */
+.sketch-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: #fff;
+    border: 2px solid var(--border);
+    border-radius: var(--r);
+    box-shadow: var(--shadow-sm);
+    color: var(--ink);
+    font-family: var(--font-ui);
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    padding: 10px 20px;
+    transition: box-shadow 80ms, transform 80ms;
+    text-align: center;
+    -webkit-tap-highlight-color: transparent;
+}
+.sketch-btn:active {
+    box-shadow: 0px 0px 0px var(--border);
+    transform: translate(3px, 3px);
+}
+.primary-btn {
+    background: var(--ink);
+    color: #fff;
+    width: 100%;
+    padding: 14px;
+    font-size: 1.05rem;
+    font-weight: 700;
+}
+.primary-btn:active { background: var(--ink); }
+
+.small-btn {
+    padding: 6px 14px;
+    font-size: 0.85rem;
+}
+
+/* ============================================================
+   LOGIN SCREEN
+   ============================================================ */
+.login-card {
+    margin-top: 10vh;
+    text-align: center;
+}
+.logo-sketch {
+    font-size: 3rem;
+    margin-bottom: 8px;
+}
+.site-title {
+    font-family: var(--font-hand);
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 6px;
+}
+.site-sub {
+    font-size: 0.88rem;
+    color: var(--ink-3);
+    margin-bottom: 24px;
+    font-style: italic;
+}
+.input-wrap {
+    text-align: left;
+    margin-bottom: 16px;
+}
+.sketch-label {
+    display: block;
+    font-weight: 600;
+    font-size: 0.88rem;
+    margin-bottom: 6px;
+    color: var(--ink-2);
+}
+.sketch-input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 2px solid var(--border);
+    border-radius: var(--r);
+    background: var(--paper);
+    font-family: var(--font-ui);
+    font-size: 1rem;
+    color: var(--ink);
+    outline: none;
+    box-shadow: var(--shadow-sm);
+}
+.sketch-input:focus {
+    background: #fff;
+    border-color: var(--accent);
+}
+.hint-text {
+    margin-top: 12px;
+    font-size: 0.8rem;
+    color: var(--ink-3);
+    font-style: italic;
+}
+
+/* ============================================================
+   DASHBOARD
+   ============================================================ */
+.dash-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid var(--border);
+}
+.greeting-sub {
+    font-size: 0.82rem;
+    color: var(--ink-3);
+    margin-bottom: 2px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.user-name-display {
+    font-family: var(--font-hand);
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.dash-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 24px;
+}
+.stat-box {
+    background: #fff;
+    border: 2px solid var(--border);
+    border-radius: var(--r);
+    box-shadow: var(--shadow-sm);
+    padding: 12px 8px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+.stat-num {
+    font-family: var(--font-hand);
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--ink);
+}
+.stat-lbl {
+    font-size: 0.72rem;
+    color: var(--ink-3);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.section-title {
+    font-family: var(--font-hand);
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--ink-2);
+}
+
+.subject-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 28px;
+}
+.subject-btn {
+    width: 100%;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    text-align: left;
+    justify-content: flex-start;
+}
+.subj-icon { font-size: 1.4rem; flex-shrink: 0; }
+.subj-name {
+    flex: 1;
+    font-size: 1rem;
+    font-weight: 600;
+}
+.subj-count {
+    font-size: 0.8rem;
+    color: var(--ink-3);
+    flex-shrink: 0;
+}
+.aralash-btn {
+    background: var(--paper2);
+    border-style: dashed;
+}
+
+.history-section { margin-top: 8px; }
+.history-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 14px;
+    border: 1.5px solid #ccc;
+    border-radius: var(--r);
+    margin-bottom: 8px;
+    background: #fff;
+    font-size: 0.88rem;
+}
+.history-pct {
+    font-family: var(--font-hand);
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+.history-pct.good  { color: var(--correct); }
+.history-pct.ok    { color: var(--accent); }
+.history-pct.bad   { color: var(--wrong); }
+
+/* ============================================================
+   TEST SCREEN
+   ============================================================ */
+.test-topbar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 2px solid var(--border);
+    position: sticky;
+    top: 0;
+    background: var(--paper);
+    padding-top: 4px;
+    z-index: 10;
+}
+.test-progress-wrap { flex: 1; }
+.test-counter {
+    font-family: var(--font-hand);
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+.progress-bar-outer {
+    height: 8px;
+    background: var(--paper2);
+    border: 1.5px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+}
+.progress-bar-inner {
+    height: 100%;
+    background: var(--ink);
+    width: 0%;
+    border-radius: 3px;
+    transition: width 0.2s;
+}
+.exit-btn {
+    padding: 8px 14px;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+}
+
+.question-area {
+    margin-bottom: 20px;
+    padding: 20px;
+    background: #fff;
+    border: 2px solid var(--border);
+    border-radius: var(--r);
+    box-shadow: var(--shadow-sm);
+}
+.q-number-badge {
+    display: inline-block;
+    background: var(--ink);
+    color: #fff;
+    font-family: var(--font-hand);
+    font-size: 1rem;
+    font-weight: 700;
+    padding: 2px 10px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+.question-text {
+    font-size: 1.05rem;
+    line-height: 1.65;
+    font-weight: 500;
+}
+
+.options-area {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+.option-btn {
+    width: 100%;
+    padding: 14px 18px;
+    text-align: left;
+    font-size: 0.95rem;
+    background: #fff;
+    border: 2px solid #555;
+    border-radius: var(--r);
+    box-shadow: 3px 3px 0px #555;
+    cursor: pointer;
+    font-family: var(--font-ui);
+    font-weight: 500;
+    color: var(--ink);
+    line-height: 1.5;
+    transition: box-shadow 80ms, transform 80ms;
+    -webkit-tap-highlight-color: transparent;
+}
+.option-btn:active:not(:disabled) {
+    box-shadow: 0px 0px 0px #555;
+    transform: translate(3px, 3px);
+}
+.option-btn.selected {
+    background: var(--accent-bg);
+    border-color: var(--accent);
+    box-shadow: 3px 3px 0px var(--accent);
+    font-weight: 600;
+}
+.option-btn.correct {
+    background: var(--correct-bg);
+    border-color: var(--correct);
+    box-shadow: 3px 3px 0px var(--correct);
+    font-weight: 700;
+}
+.option-btn.wrong {
+    background: var(--wrong-bg);
+    border-color: var(--wrong);
+    box-shadow: 3px 3px 0px var(--wrong);
+    text-decoration: line-through;
+}
+.option-btn:disabled { cursor: default; }
+
+.nav-btns {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 14px;
+}
+.nav-btn {
+    flex: 1;
+    padding: 11px;
+}
+#prev-btn:disabled,
+#next-btn:disabled {
+    opacity: 0.4;
+    cursor: default;
+    pointer-events: none;
+}
+
+.finish-btn {
+    width: 100%;
+    padding: 14px;
+    background: var(--ink);
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    border-color: var(--ink);
+}
+
+.mini-map-wrap {
+    border-top: 1.5px dashed #ccc;
+    padding-top: 14px;
+}
+.mini-map {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+.map-dot {
+    width: 28px;
+    height: 28px;
+    border: 1.5px solid #999;
+    border-radius: 4px;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.65rem;
+    font-weight: 700;
+    cursor: pointer;
+    color: var(--ink-3);
+}
+.map-dot.active   { border-color: var(--accent); background: var(--accent-bg); color: var(--accent); font-weight: 800; }
+.map-dot.answered { border-color: var(--ink); background: var(--paper2); color: var(--ink); }
+.map-dot.correct  { border-color: var(--correct); background: var(--correct-bg); color: var(--correct); }
+.map-dot.wrong    { border-color: var(--wrong); background: var(--wrong-bg); color: var(--wrong); }
+
+/* ============================================================
+   RESULT SCREEN
+   ============================================================ */
+.result-card { text-align: center; }
+.result-icon { font-size: 3rem; margin-bottom: 10px; }
+.result-title {
+    font-family: var(--font-hand);
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+.result-score {
+    font-family: var(--font-hand);
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 4px;
+}
+.result-pct {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--ink-3);
+    margin-bottom: 20px;
+}
+.result-bars {
+    text-align: left;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.res-bar-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.85rem;
+}
+.res-bar-label { width: 90px; font-weight: 600; color: var(--ink-2); flex-shrink: 0; }
+.res-bar-outer {
+    flex: 1;
+    height: 14px;
+    background: var(--paper2);
+    border: 1.5px solid #bbb;
+    border-radius: 4px;
+    overflow: hidden;
+}
+.res-bar-fill {
+    height: 100%;
+    background: var(--ink);
+    border-radius: 3px;
+}
+.res-bar-num { font-weight: 700; min-width: 36px; text-align: right; font-size: 0.88rem; }
+
+.result-btns {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+@media (max-width: 420px) {
+    .screen { padding: 14px 12px 32px; }
+    .question-text { font-size: 0.98rem; }
+    .option-btn { font-size: 0.9rem; padding: 12px 14px; }
+    .dash-stats .stat-num { font-size: 1.3rem; }
+    .subject-btn { padding: 13px 14px; }
+    .map-dot { width: 24px; height: 24px; font-size: 0.58rem; }
+}
